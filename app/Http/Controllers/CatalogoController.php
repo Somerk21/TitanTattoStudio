@@ -15,27 +15,25 @@ class CatalogoController extends Controller
         return view('catalogos.new');
     }
     public function store(Request $request){
+      
         $reglas=[
-            "txtImagenCat" => ['required','alpha', 'min:3', 'max:30']          
+            "txtImagenCat" => ['required', 'min:3', 'max:30']          
         ];
         $reglas=[
-           
-            "txtUrlCat" => ['required','alpha', 'min:5', 'max:30'] 
-        ];
-        $reglas=[
-           
             "txtColorCat" => ['required'] 
         ];
-       
+        $reglas=[
+            "txtUrlCat" => ['required', 'min:5', 'max:30'] 
+        ];
       $validador = Validator::make($request->all() , $reglas);
       
       if($validador->fails()){
         return redirect('catalogos/create')->withErrors($validador);
       }
       $a = new Catalogo();
-      $a->URL_IMAGEN = $request->txtImagenCat;
-      $a->COLOR_IMAGEN = $request ->txtUrlCat;
-      $a->NOMBRE_IMAGEN = $request->txtColorCat;
+      $a->Nombre_Imagen = $request->txtImagenCat;
+      $a->Color_Imagen = $request ->txtColorCat;
+      $a->Url_Imagen = $request->txtUrlCat;
       $a->save();
 
       return redirect('catalogos/create')

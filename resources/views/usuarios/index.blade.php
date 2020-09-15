@@ -1,37 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Usuario</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.css" integrity="sha512-mG7Xo6XLlQ13JGPQLgLxI7bz8QlErrsE9rYQDRgF+6AlQHm9Tn5bh/vaIKxBmM9mULPC6yizAhEmKyGgNHCIvg==" crossorigin="anonymous" />
-    </head>
-<body>
-    <h1>Usuarios</h1>
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>
-          usuario
-          </th>
-          <th>
-          clave
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach($usuarios as $usuario)
-       <tr>
-        <th>
-        {{ $usuario->USUARIO}}
-        </th>
-        <th>
-        {{ $usuario->CLAVE }}
-        </th>
-       </tr>
-      @endforeach
-      </tbody>
-    </table>
-    {{$usuarios->links()}}
-</body>
-</html>
+@extends('layouts.adminis')
+@section('titulo') Consulta Usuarios @endsection
+@section('admins')
+<div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Lista de usuarios</h5>
+			  <div class="table-responsive">
+               <table class="table table-striped">
+                  <thead>
+                    <tr>
+                       <th>Codigo</th>
+                       <th>Usuario</th>
+                       <th>Clave</th> 
+                       <th>Opciones</th> 
+                    </tr>
+                  </thead>
+                    @foreach($usuarios as $usuario)
+                       <tr>
+                          <th><strong class="text-danger">{{ $usuario->Id_Usuario}}</strong></th>
+                          <th>{{ $usuario->Nombre_Usuario}}</th>
+                          <th>{{ $usuario->Clave_Usuario}}</th>
+                          <th><a href="#">Editar  </a> <a href="#">/ Eliminar </a> </th>
+                       </tr>
+                       @endforeach
+                     </tbody>
+                </table></br>
+                {{$usuarios->links()}}</br>
+                <button type="submit" href="usuarios/create" class="btn btn-light px-5">Crear uno Nuevo</button>
+            </div>
+          </div>
+      </div>
+</div>
+@endsection

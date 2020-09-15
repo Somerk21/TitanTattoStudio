@@ -25,23 +25,27 @@ class ClienteController extends Controller
         ];
         $reglas=[
            
-            "txtDireccionCli" => ['required','alpha', 'min:10', 'max:40'] 
+            "txtDireccionCli" => ['required','min:10', 'max:40'] 
         ];
         $reglas=[
            
-            "txtTelefonoCli" => ['required','alpha', 'min:5', 'max:20'] 
+            "txtCorreoCli" => ['required', 'min:5', 'max:20'] 
         ];
         $reglas=[
            
-            "txtDocumentoCli" => ['required','alpha', 'min:5', 'max:16','unique:cliente,DOCUMENTO_CLIENTE'] 
+            "txtTelefonoCli" => ['required', 'min:5', 'max:20'] 
         ];
         $reglas=[
            
-            "txtFechaNac" => ['required','alpha'] 
+            "txtDocumentoCli" => ['required', 'min:5', 'max:16','unique:cliente,DOCUMENTO_CLIENTE'] 
         ];
         $reglas=[
            
-            "txtUsuarioCli" => ['required','alpha', 'min:5', 'max:20','unique:cliente,ID_USUARIO_FK'] 
+            "txtFechaNac" => ['required'] 
+        ];
+        $reglas=[
+           
+            "txtUsuarioCli" => ['required','unique:cliente,ID_USUARIO_FK'] 
         ];
        
       $validador = Validator::make($request->all() , $reglas);
@@ -50,17 +54,18 @@ class ClienteController extends Controller
         return redirect('clientes/create')->withErrors($validador);
       }
       $a = new Cliente();
-      $a->NOMBRE_CLIENTE = $request->txtNombreCli;
-      $a->APELLIDO_CLIENTE = $request ->txtApellidoCli;
-      $a->DIRECCION_CLIENTE = $request->txtDireccionCli;
-      $a->TELEFONO_CLIENTE = $request ->txtTelefonoCli;
-      $a->DOCUMENTO_CLIENTE = $request->txtDocumentoCli;
-      $a->FECHA_NACIMIENTO = $request->txtFechaNac;
-      $a->ID_USUARIO_FK = $request ->txtUsuarioCli;
+      $a->Nombre_Cliente = $request->txtNombreCli;
+      $a->Apellido_Cliente = $request ->txtApellidoCli;
+      $a->Direccion_Cliente = $request->txtDireccionCli;
+      $a->Correo_Cliente = $request ->txtCorreoCli;
+      $a->Telefono_Cliente = $request ->txtTelefonoCli;
+      $a->Documento_Cliente = $request->txtDocumentoCli;
+      $a->Fecha_Nacimiento = $request->txtFechaNac;
+      $a->Id_Usuario_FK = $request ->txtUsuarioCli;
       $a->save();
 
       return redirect('clientes/create')
-      ->with("BuenCli","Cliente  registrado Exitosamente")
-      ->with("NOMBRE_CLIENTE",$a->NOMBRE_CLIENTE);
+      ->with("BuenCli","Cliente registrado Exitosamente")
+      ->with("Nombre_Cliente",$a->Nombre_Cliente);
     }
 }

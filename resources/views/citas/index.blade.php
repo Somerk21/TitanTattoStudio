@@ -1,61 +1,42 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Citas</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.css" integrity="sha512-mG7Xo6XLlQ13JGPQLgLxI7bz8QlErrsE9rYQDRgF+6AlQHm9Tn5bh/vaIKxBmM9mULPC6yizAhEmKyGgNHCIvg==" crossorigin="anonymous" />
-    </head>
-<body>
-    <h1>citas</h1>
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>
-          id
-          </th>
-          <th>
-          Fecha de la cita
-          </th>
-          <th>
-          duracion
-          </th>
-          <th>
-          detalle
-          </th>
-          <th>
-          empleado
-          </th>
-          <th>
-          cliente
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach($citas as $cita)
-       <tr>
-        <th>
-        {{ $cita->ID_CITA}}
-        </th>
-        <th>
-        {{ $cita->FECHA_CITA}}
-        </th>
-        <th>
-        {{ $cita->DURACION_CITA}}
-        </th>
-        <th>
-        {{ $cita->ID_DETALLE_FK}}
-        </th>
-        <th>
-        {{ $cita->ID_EMPLEADO_FK}}
-        </th>
-        <th>
-        {{ $cita->ID_CLIENTE_FK}}
-        </th>
-       </tr>
-      @endforeach
-      </tbody>
-    </table>
-    {{$citas->links()}}
-</body>
-</html>
+@extends('layouts.adminis')
+@section('titulo') Consulta Citas @endsection
+@section('admins')
+<div class="row">
+        <div class="col-lg-10">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Lista de Citas</h5>
+			         <div class="table-responsive">
+                <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Codigo</th>
+                      <th>Fecha de la cita</th>
+                      <th>Duracion</th>
+                      <th>Empleado</th>
+                      <th>Cliente</th>
+                      <th>Estado</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                  @foreach($citas as $cita)
+                    <tr>
+                        <th><strong class="text-danger">{{ $cita->Id_cita}}</strong></th>
+                        <th>{{ $cita->Fecha_Cita}}</th>
+                        <th>{{ $cita->Duracion_Cita}}</th>
+                        <th>{{ $cita->ID_Empleado_FK}}</th>
+                        <th>{{ $cita->ID_Cliente_FK}}</th>
+                        <th> <input type="button" class="btn btn-primary" value="Activo"></th>
+                        <th><a href="#">Editar  </a> <a href="#">/ Eliminar </a> </th>
+                       </tr>
+                        @endforeach
+                      </tbody>
+                    </table>
+                     {{$citas->links()}}</br>
+                     <button type="submit" href="usuarios/create" class="btn btn-light px-5">Crear uno Nuevo</button>
+                </div>
+          </div>
+    </div>
+</div>
+@endsection

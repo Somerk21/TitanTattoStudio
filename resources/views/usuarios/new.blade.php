@@ -1,46 +1,38 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>UsuCreate</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.css" integrity="sha512-mG7Xo6XLlQ13JGPQLgLxI7bz8QlErrsE9rYQDRgF+6AlQHm9Tn5bh/vaIKxBmM9mULPC6yizAhEmKyGgNHCIvg==" crossorigin="anonymous" />
-</head>
-<body>
-  <form class="form-horizontal" method="POST" action="{{ url('usuarios/store') }}">
-   @csrf 
-     <fieldset>
+@extends('layouts.adminis')
+@section('titulo') Crear Usuario @endsection
+@section('admins')
+<div class="row mt-3">
+  <div class="col-lg-12">
+    <div class="card">
+      <div class="card-body">
+        <div class="card-title">Nuevo Detalle De Trabajo</div><hr>
+         <form class="form-horizontal" method="POST" action="{{ url('usuarios/store') }}">
+           @csrf 
+           <fieldset>
+            <div class="form-group">
+             <label for="input-1">Usuario:</label>
+             <input type="text" name="txtNombreUsu" class="form-control" id="input-1" placeholder="">
+            </div>
 
-<legend>Nuevo Usuario</legend>
-<div class="form-group">
-  <label class="col-md-4 control-label" for="textinput">Nombre de Usuario</label>  
-  <div class="col-md-4">
-  <input id="textinput" name="txtNombreUsu" type="text" placeholder="" class="form-control input-md"> 
-  </div>
+            <div class="form-group">
+             <label for="input-2">Clave:</label>
+             <input type="password" name="txtClaveUsu" class="form-control" id="input-2" placeholder="">
+            </div>        
+  
+            <div class="form-group">
+             <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i>Registrar</button>
+            </div>
+           </fieldset>
+         </form>
+          @if(session('exito'))
+          <p class="alert-success"> {{ session("exito")}}</p>
+          <P class="alert-success">usuario creado <strong>{{session("Nombre_Usuario")}}</strong></p>
+          @else 
+           @foreach($errors->all() as $error)
+            <p class="alert-danger"> {{$error}} </p>
+           @endforeach
+          @endif
+        </div>
+    </div>
 </div>
-
-<div class="form-group">
-  <label class="col-md-4 control-label" for="passwordinput">Clave</label>
-  <div class="col-md-4">
-    <input id="passwordinput" name="txtClaveUsu" type="password" placeholder="" class="form-control input-md">
-  </div>
-</div>
-<div class="form-group">
-  <label class="col-md-4 control-label" for=""></label>
-  <div class="col-md-4">
-    <button type="submit" id="" name="" class="btn btn-primary">Crear</button>
-  </div>
-</div>
-
-     </fieldset>
-   </form>
-   @if(session('exito'))
-   <p class="alert-success"> {{ session("exito")}}</p>
-   <P class="alert-success">Artista creado <strong>{{session("USUARIO")}}</strong></p>
-   @else 
-     @foreach($errors->all() as $error)
-     <p class="alert-danger"> {{$error}} </p>
-     @endforeach
-   @endif
-</body>
-</html>
+@endsection

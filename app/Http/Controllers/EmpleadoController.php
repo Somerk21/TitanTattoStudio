@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 class EmpleadoController extends Controller
 {
     public function index(){
-        $listado_empleados = Empleado::paginate(1);
+        $listado_empleados = Empleado::paginate(5);
         return view('empleados.index')->with("empleados", $listado_empleados);
     }
     public function create(){
@@ -26,19 +26,23 @@ class EmpleadoController extends Controller
         ];
         $reglas=[
            
-            "txtDireccionEmp" => ['required','alpha', 'min:10', 'max:40'] 
+            "txtDireccionEmp" => ['required', 'min:10', 'max:40'] 
         ];
         $reglas=[
            
-            "txtTelefonoEmp" => ['required','alpha', 'min:5', 'max:20'] 
+            "txtCorreoEmp" => ['required', 'min:5', 'max:20'] 
         ];
         $reglas=[
            
-            "txtDocumentoEmp" => ['required','alpha', 'min:5', 'max:16','unique:empleado,DOCUMENTO_EMPLEADO'] 
+            "txtTelefonoEmp" => ['required', 'min:5', 'max:20'] 
         ];
         $reglas=[
            
-            "txtUsuarioEmp" => ['required','alpha', 'min:5', 'max:20'] 
+            "txtDocumentoEmp" => ['required', 'min:5', 'max:16','unique:empleado,DOCUMENTO_EMPLEADO'] 
+        ];
+        $reglas=[
+           
+            "txtUsuarioEmp" => ['required'] 
         ];
        
       $validador = Validator::make($request->all() , $reglas);
@@ -47,15 +51,17 @@ class EmpleadoController extends Controller
         return redirect('empleados/create')->withErrors($validador);
       }
       $a = new Empleado();
-      $a->NOMBRE_EMPLEADO = $request->txtNombreEmp;
-      $a->APELLIDO_EMPLEADO = $request ->txtApellidoEmp;
-      $a->DIRECCION_EMPLEADO = $request->txtDireccionEmp;
-      $a->TELEFONO_EMPLEADO = $request ->txtTelefonoEmp;
-      $a->DOCUMENTO_EMPLEADO = $request->txtDocumentoEmp;
-      $a->ID_USUARIO_FK = $request ->txtUsuarioEmp;
+      $a->Nombre_Empleado = $request->txtNombreEmp;
+      $a->Apellido_Empleado = $request ->txtApellidoEmp;
+      $a->Direccion_Empleado = $request->txtDireccionEmp;    
+      $a->Correo_Empleado = $request ->txtCorreoEmp;
+      $a->Telefono_Empleado = $request ->txtTelefonoEmp;
+      $a->Documento_Empleado = $request->txtDocumentoEmp;
+      $a->ID_Usuario_FK	 = $request ->txtUsuarioEmp;
       $a->save();
 
       return redirect('empleados/create')
-      ->with("exito","Empleado  registrado Exitosamente");
+      ->with("exito","Empleado  registrado Exitosamente")
+      ->with("USUARIO",$a->Nombre_Empleado);;
     }
 }

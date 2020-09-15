@@ -16,7 +16,4 @@ class Cita extends Model
     public function clientes(){
         return $this->hasMany('App\Cliente', 'ID_CLIENTE');
     }
-    public function detalles(){
-        return $this->hasMany('App\Detalle_Cita', 'ID_DETALLE');
-    }
 }

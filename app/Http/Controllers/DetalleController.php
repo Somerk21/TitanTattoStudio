@@ -7,36 +7,39 @@ use Illuminate\Support\Facades\Validator;
 
 class DetalleController extends Controller
 {
-    
     public function index(){
-        $listado_detalles = Detalle_Cita::paginate(2);
-        return view('detalle_citas.index')->with("detalles", $listado_detalles);
+    $listado_detalles = Detalle_Cita::paginate(5);
+    return view('detalle_citas.index')->with("detalle_citas", $listado_detalles);
     }
+
     public function create(){
-        return view('detalle_citas.new');
+    return view('detalle_citas.new');
     }
     public function store(Request $request){
 
         $reglas=[
-            "txtAlergias" => ['required','alpha', 'min:5', 'max:40']          
+            "txtAlergias" => ['required', 'min:5', 'max:150']          
         ];
         $reglas=[
-            "txtPrecio" => ['required','alpha', 'min:5', 'max:30'] 
+            "txtPrecio" => ['required', 'min:4', 'max:10'] 
         ];
         $reglas=[
-            "txtDetalle" => ['required','alpha', 'min:10', 'max:300'] 
+            "txtAbonos" => ['required', 'min:4', 'max:10'] 
         ];
         $reglas=[
-            "txtClienteFk" => ['required', 'min:5', 'max:20'] 
+            "txtClienteFk" => ['required'] 
         ];
         $reglas=[
-            "txtEmpleadoFk" => ['required', 'min:5', 'max:16'] 
+            "txtEmpleadoFk" => ['required'] 
         ];
         $reglas=[
-            "txtCatalogoFk" => ['required','min:5', 'max:20'] 
+            "txtCatalogoFk" => ['required'] 
         ];
         $reglas=[
-            "txtAbonos" => ['required', 'min:5', 'max:10'] 
+            "txtCitaFk" => ['required'] 
+        ];
+        $reglas=[
+            "txtDetalle" => ['required', 'min:10', 'max:300'] 
         ];
        
       $validador = Validator::make($request->all() , $reglas);
@@ -45,16 +48,17 @@ class DetalleController extends Controller
         return redirect('detalle_citas/create')->withErrors($validador);
       }
       $a = new Detalle_Cita();
-      $a->ALERGIAS_DETALLE = $request->txtAlergias;
-      $a->PRECIO_DETALLE = $request ->txtPrecio;
-      $a->DETALLE_TRABAJO = $request->txtDetalle;
-      $a->ID_CLIENTE_FK = $request ->txtClienteFk;
-      $a->ID_EMPLEADO_FK = $request->txtEmpleadoFk;
-      $a->ID_CATALOGO_FK = $request ->txtCatalogoFk;
-      $a->ABONOS_DETALLE = $request ->txtAbonos;
+      $a->Alergias_Detalle = $request->txtAlergias;
+      $a->Precio_Detalle = $request ->txtPrecio;
+      $a->Abonos_Detalle = $request ->txtAbonos;
+      $a->Id_Cliente_FK = $request ->txtClienteFk;
+      $a->Id_Empleado_FK = $request->txtEmpleadoFk;
+      $a->Id_Catalogo_FK = $request ->txtCatalogoFk;
+      $a->Id_Cita_FK = $request ->txtCitaFk;
+      $a->Detalle_Trabajo = $request->txtDetalle;
       $a->save();
 
       return redirect('detalle_citas/create')
-      ->with("exito","detalle  registrado Exitosamente");
+      ->with("exito","El detale fue registrado Exitosamente");
     }
 }

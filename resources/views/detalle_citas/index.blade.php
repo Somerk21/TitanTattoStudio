@@ -1,73 +1,51 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Detalle</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.css" integrity="sha512-mG7Xo6XLlQ13JGPQLgLxI7bz8QlErrsE9rYQDRgF+6AlQHm9Tn5bh/vaIKxBmM9mULPC6yizAhEmKyGgNHCIvg==" crossorigin="anonymous" />
-    </head>
-<body>
-    <h1>Detalle citas</h1>
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>
-          id
-          </th>
-          <th>
-          alergias
-          </th>
-          <th>
-          precio
-          </th>
-          <th>
-          detalle del trabajo
-          </th>  
-          <th>
-          cliente
-          </th>
-          <th>
-          empleado
-          </th>
-          <th>
-          catalogo
-          </th>
-          <th>
-          abono
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach($detalles $detalle)
-       <tr>
-        <th>
-        {{ $detalle->ID_DETALLE}}
-        </th>
-        <th>
-        {{ $detalle->ALERGIAS_DETALLE}}
-        </th>
-        <th>
-        {{ $detalle->PRECIO_DETALLE}}
-        </th>
-        <th>
-        {{ $detalle->DETALLE_TRABAJO}}
-        </th>
-        <th>
-        {{ $detalle->ID_CLIENTE_FK}}
-        </th>
-        <th>
-        {{ $detalle->ID_EMPLEADO_FK}}
-        </th>
-        <th>
-        {{ $detalle->ID_CATALOGO_FK}}
-        </th>
-        <th>
-        {{ $detalle->ABONOS_DETALLE}}
-        </th>
-       </tr>
-      @endforeach
-      </tbody>
-    </table>
-    
-</body>
-</html>
+@extends('layouts.adminis')
+@section('titulo') Consulta detalle @endsection
+@section('admins')
+<div class="checkout-area ptb-130 bg-1">
+    <div class="container">
+			  <div class="row">
+		    		<div class="col-md-12">
+				    		<div class="checkout-form-wrap mb-30">
+                  <div class="checkout-form-wrap mb-30">
+					      		<h3 class="checkout-title">listas de trabajo</h3>
+                     <table class="table table-borderless">
+                      <thead>
+                        <tr>
+                           <th>Codigo</th>
+                           <th>Alergias</th>
+                           <th>Precio</th>
+                           <th>Detalle del trabajo</th>
+                           <th>Abono</th>  
+                           <th>Cliente</th>
+                           <th>Empleado</th>
+                           <th>Catalogo</th>
+                           <th>Cita</th>
+                          <th>Opciones</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                         @foreach($detalles $detalle)
+                          <tr>
+                            <th><strong class="text-danger">{{ $detalle->Id_Detalle}}</strong></th>
+                            <th>{{ $detalle->Alergias_Detalle}}</th>
+                            <th>{{ $detalle->Precio_Detalle}}</th>
+                            <th>{{ $detalle->Detalle_Trabajo}}</th>
+                            <th>{{ $detalle->Abonos_Detalle	}}</th>
+                            <th>{{ $detalle->Id_Cliente_FK}}</th>
+                            <th>{{ $detalle->Id_Empleado_FK}}</th>
+                            <th>{{ $detalle->Id_Catalogo_FK}}</th>
+                            <th>{{ $detalle->Id_Cita_FK}}</th>
+                            <th><a href="#">Editar</a>/<a href="#">Eliminar</a></th>
+                          </tr>
+                         @endforeach
+                      </tbody>
+                     </table> 
+                       {{$catalogos->links()}}</br>
+                       <button type="submit" href="usuarios/create" class="btn btn-light px-5">Crear uno Nuevo</button>
+                   </div>
+                 </div>
+             </div>
+			 </div>
+		</div>
+</div>
+@endsection

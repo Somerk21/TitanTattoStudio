@@ -1,49 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Catalogo</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.4.1/css/bootstrap.css" integrity="sha512-mG7Xo6XLlQ13JGPQLgLxI7bz8QlErrsE9rYQDRgF+6AlQHm9Tn5bh/vaIKxBmM9mULPC6yizAhEmKyGgNHCIvg==" crossorigin="anonymous" />
-    </head>
-<body>
-    <h1>catalogo</h1>
-    <table class="table table-borderless">
-      <thead>
-        <tr>
-          <th>
-          ID
-          </th>
-          <th>
-          URL
-          </th>
-          <th>
-          Color
-          </th>
-          <th>
-          Nombre Imagen
-          </th>
-        </tr>
-      </thead>
-      <tbody>
-      @foreach($catalogos as $catalogo)
-       <tr>
-        <th>
-        {{ $catalogo->ID_CATALOGO}}
-        </th>
-        <th>
-        {{ $catalogo->URL_IMAGEN}}
-        </th>
-        <th>
-        {{ $catalogo->COLOR_IMAGEN}}
-        </th>
-        <th>
-        {{ $catalogo->NOMBRE_IMAGEN}}
-        </th>
-       </tr>
-      @endforeach
-      </tbody>
-    </table>
-    {{$catalogos->links()}}
-</body>
-</html>
+@extends('layouts.adminis')
+@section('titulo') Consulta Catalogo @endsection
+@section('admins')
+<div class="row">
+        <div class="col-lg-12">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Lista de Imagenes</h5>
+			  <div class="table-responsive">
+               <table class="table table-striped">
+                  <thead>
+                    <tr>
+                      <th>Codigo</th>
+                      <th>Nombre Imagen</th>
+                      <th>Color</th>
+                      <th>URL</th>   
+                      <th>Estado</th>
+                      <th>Opciones</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                   @foreach($catalogos as $catalogo)
+                      <tr>
+                         <th><strong class="text-danger">{{ $catalogo->Id_Catalogo}}</strong></th>
+                         <th>{{ $catalogo->Nombre_Imagen}}</th>
+                         <th>{{ $catalogo->Color_Imagen}}</th>
+                         <th>{{ $catalogo->Url_Imagen	}}</th>
+                         <th> <input type="button" class="btn btn-primary" value="Activo"></th>
+                         <th><a href="#">Editar</a><a href="#">/ Eliminar </a> </th>
+                      </tr>
+                       @endforeach
+                  </tbody>
+              </table>
+               {{$catalogos->links()}}</br>
+               <button type="submit" href="usuarios/create" class="btn btn-light px-5">Crear uno Nuevo</button>
+             </div>
+          </div>
+       </div>
+ </div>
+@endsection

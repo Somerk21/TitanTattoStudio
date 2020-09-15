@@ -17,6 +17,14 @@ Route::get('/', function () {
     return view('welcome');   
 });
 
+
+
+Route::get('/', function () {
+    return view('home');   
+});
+
+Route::get('login', 'LoginController@login');
+
 Route::get('usuarios', 'UsuarioController@index');
 Route::get('usuarios/create','UsuarioController@create');
 Route::post('usuarios/store','UsuarioController@store');
