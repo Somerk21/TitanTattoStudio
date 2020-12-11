@@ -2,44 +2,47 @@
 
 namespace App\Http\Controllers;
 use App\Detalle_Cita;
+use App\Empleado;
+Use App\User;
+use App\Clcita;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
 class DetalleController extends Controller
 {
     public function index(){
-    $listado_detalles = Detalle_Cita::paginate(5);
-    return view('detalle_citas.index')->with("detalle_citas", $listado_detalles);
+
+        if(\Auth::user()->Rol == 2 ){
+            $listado_detalles = Detalle_Cita::where("Id_user_FK","=",\Auth::user()->id)->paginate(15);
+    $users = \App\User::select('name')->get();
+    return view('detalle_citas.index')
+    ->with("detalle_citas", $listado_detalles);
+          }
+
+          $listado_detalles = Detalle_Cita::paginate(15);
+        $users = \App\User::select('name')->get();
+        return view('detalle_citas.indetalle')
+        ->with("detalle_citas", $listado_detalles);
+
+    
     }
 
     public function create(){
-    return view('detalle_citas.new');
+        if(\Auth::user()->Rol == 2 ){
+            $user = \App\User::where("Rol","=",2)->get();
+        // $estado = \App\Empleado::select('Nombre_Empleado')->distinct()->get();
+        return view('detalle_citas.new')
+        ->with("user" , $user);
+        }
+        $user = \App\User::where("Rol","=",2)->get();
+        // $estado = \App\Empleado::select('Nombre_Empleado')->distinct()->get();
+        return view('detalle_citas.adnew')
+        ->with("user" , $user);
     }
     public function store(Request $request){
 
         $reglas=[
-            "txtAlergias" => ['required', 'min:5', 'max:150']          
-        ];
-        $reglas=[
-            "txtPrecio" => ['required', 'min:4', 'max:10'] 
-        ];
-        $reglas=[
-            "txtAbonos" => ['required', 'min:4', 'max:10'] 
-        ];
-        $reglas=[
-            "txtClienteFk" => ['required'] 
-        ];
-        $reglas=[
-            "txtEmpleadoFk" => ['required'] 
-        ];
-        $reglas=[
-            "txtCatalogoFk" => ['required'] 
-        ];
-        $reglas=[
-            "txtCitaFk" => ['required'] 
-        ];
-        $reglas=[
-            "txtDetalle" => ['required', 'min:10', 'max:300'] 
+            "Id_user_FK" => ['required'], "Id_clcita_FK" => ['required']
         ];
        
       $validador = Validator::make($request->all() , $reglas);
@@ -51,14 +54,52 @@ class DetalleController extends Controller
       $a->Alergias_Detalle = $request->txtAlergias;
       $a->Precio_Detalle = $request ->txtPrecio;
       $a->Abonos_Detalle = $request ->txtAbonos;
-      $a->Id_Cliente_FK = $request ->txtClienteFk;
-      $a->Id_Empleado_FK = $request->txtEmpleadoFk;
-      $a->Id_Catalogo_FK = $request ->txtCatalogoFk;
-      $a->Id_Cita_FK = $request ->txtCitaFk;
+      $a->Id_user_FK  = $request ->sluser;
+      $a->Id_clcita_FK  = $request ->txtCitas;
       $a->Detalle_Trabajo = $request->txtDetalle;
+      $a->Id_Estado_FK  = 3;
       $a->save();
 
       return redirect('detalle_citas/create')
       ->with("exito","El detale fue registrado Exitosamente");
     }
+
+    public function edit($Id_Detalle){
+        $detalle= Detalle_Cita::findOrFail($Id_Detalle);
+        if(\Auth::user()->Rol == 2 ){
+            return view ('detalle_citas.edit', compact('detalle'));
+        }
+        return view ('detalle_citas.adedit', compact('detalle'));
+        }
+    
+        public function update(Request $request, $Id_Detalle){
+            $datosDetalle=request()->except(['_token','_method']);
+            // var_dump($datosUsuario);
+            Detalle_Cita::where('Id_Detalle','=',$Id_Detalle)->update($datosDetalle);
+             $detalle= Detalle_Cita::findOrFail($Id_Detalle);
+            return view ('detalle_citas.edit', compact('detalle'));
+        }
+    
+        public function destroy(Request $request,$Id_Detalle){
+            Detalle_Cita::destroy($Id_Detalle);
+            return redirect('usuarios');
+       }
+
+       public function inhabilitar($Id_Detalle)
+       {
+           $detalle = Detalle_Cita::findOrFail($Id_Detalle);
+           $detalle->Id_Estado_FK = 4;
+           $detalle->save();
+
+           return redirect("detalle_citas");
+       }
+
+       public function habilitar($Id_Detalle)
+       {
+           $detalle = Detalle_Cita::findOrFail($Id_Detalle);
+           $detalle->Id_Estado_FK = 3;
+           $detalle->save();
+
+           return redirect("detalle_citas");
+       }
 }

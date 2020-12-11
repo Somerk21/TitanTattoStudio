@@ -97,10 +97,6 @@ $(function() {
 				  displayColors:false
 				}
 			   }
-			});
-		
-
-		
-		
+			});	
    });	 
    

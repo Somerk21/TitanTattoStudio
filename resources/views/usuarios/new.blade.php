@@ -7,7 +7,7 @@
       <div class="card-body">
         <div class="card-title">Nuevo Detalle De Trabajo</div><hr>
          <form class="form-horizontal" method="POST" action="{{ url('usuarios/store') }}">
-           @csrf 
+          @csrf
            <fieldset>
             <div class="form-group">
              <label for="input-1">Usuario:</label>
@@ -23,6 +23,7 @@
              <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i>Registrar</button>
             </div>
            </fieldset>
+           <div id="respuesta"></div>
          </form>
           @if(session('exito'))
           <p class="alert-success"> {{ session("exito")}}</p>
@@ -35,4 +36,60 @@
         </div>
     </div>
 </div>
+<button type="submit" id="enviar" class="btn btn-light px-5"><a href="{{ url('../usuarios') }}">Volver</a></button>
 @endsection
+<script type="text/javascript">
+
+$(document).ready(function(){
+
+
+$('#login').click(function(){
+
+var ID_USUARIO = $('#txtNombreUsu').val();
+var CLAVE = $('#txtClaveUsu').val();
+
+cadena= "txtNombreUsu=" + ID_USUARIO + "&txtClaveUsu=" + CLAVE;
+
+if ($.trim(ID_USUARIO).length < 1){
+	alertify.alert('UPSS','debes digitar Usuario');
+
+}
+
+if ($.trim(CLAVE).length < 1 ){
+	alertify.alert('UPSS','debes digitar contraseña');
+
+}
+if ($.trim(ID_USUARIO).length > 0 && $.trim(CLAVE).length > 0 ){
+	
+	$.ajax({
+		url:"ajax/usuario.php",
+		method:"post",
+		data:cadena,
+		cache:"false",
+		beforeSend:function(){
+
+			$('#enviar').val("conectando..")
+		},
+
+		success:function(data){
+
+	if (data=="1"){
+			alertify.success('Bienvenido '+ ID_USUARIO);
+
+			location.replace('/home/');
+
+
+		}
+		else{
+		alertify.error('Datos incorrectos e intenta nuevamente');
+		}
+	}
+
+	});
+
+} 
+
+});
+
+}); 
+</script>

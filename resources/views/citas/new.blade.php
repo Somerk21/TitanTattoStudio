@@ -55,4 +55,5 @@
         </div>
     </div>
 </div>
+<button type="submit"  class="btn btn-light px-5"><a href="{{ url('../citas') }}">Volver</a></button>
 @endsection

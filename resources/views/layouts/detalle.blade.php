@@ -36,15 +36,24 @@
                                             <li class="active"><a href="/">Inicio</a></li>
                                             <li><a href="#">Consultas</a>
                                                 <ul>
-                                                    <li><a href="{{ url('/empleados/') }}">Empleado</a></li>
+                                                    <!-- <li><a href="{{ url('/empleados/') }}">Empleado</a></li>
                                                     <li><a href="{{ url('detalle_citas/') }}">Detalle</a></li>
                                                     <li><a href="{{ url('clientes/') }}">Cliente</a></li>
                                                     <li><a href="{{ url('citas/') }}">Agendar cita</a></li>
-                                                    <li><a href="{{ url('catalogos/') }}">Galeria</a></li>
+                                                    <li><a href="{{ url('catalogos/') }}">Galeria</a></li> -->
                                                 </ul>
                                             </li>
+
                                             
-                                            <li><a href="#">Inicia Sesion</a></li>
+                                            <li><a href="#">Cuidados</a>
+
+                                            </li>
+
+                                            <li><a href="#">Catalogo</a>
+
+                                            </li>
+                                            
+                                            <li><a href="{{ url('logout') }}">Cerrar sesion</a></li>
                                         </ul>
                                     </div>
                                 </div>

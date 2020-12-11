@@ -1,5 +1,5 @@
-@extends('layouts.adminis')
-@section('titulo') Consulta Empleados @endsection
+@extends('layout_empleado.adminisE')
+@section('titulo') Crear Empleados @endsection
 @section('admins')
 <div class="row mt-3">
   <div class="col-lg-12">
@@ -9,39 +9,25 @@
          <form class="form-horizontal" method="POST" action="{{ url('empleados/store') }}">
           @csrf 
           <fieldset>
-            <div class="form-group">
-             <label for="input-1">Nombre:</label>
-             <input type="text" name="txtNombreEmp" class="form-control" id="input-1" placeholder="">
+          <div class="form-group row">
+             <label class="col-lg-1 col-form-label form-control-label">Nombre:</label>
+             <div class="col-lg-8">
+              <input type="text" name="name" class="form-control" id="input-1" placeholder="">
+             </div>
             </div>
 
-            <div class="form-group">
-             <label for="input-2">Apellido:</label>
-             <input type="text" name="txtApellidoEmp" class="form-control" id="input-2" placeholder="">
+             <div class="form-group row">
+             <label class="col-lg-1 col-form-label form-control-label">Email:</label>
+             <div class="col-lg-8">
+              <input type="email" name="email" class="form-control" id="input-2" placeholder="">
+            </div>
             </div>
 
-            <div class="form-group">
-             <label for="input-3">Direccion:</label>
-             <input type="text" name="txtDireccionEmp" class="form-control" id="input-3" placeholder="">
+            <div class="form-group row">
+             <label class="col-lg-1 col-form-label form-control-label">Contraseña:</label>
+             <div class="col-lg-8">
+              <input type="password" name="password" class="form-control" id="input-3" placeholder="">
             </div>
-
-            <div class="form-group">
-             <label for="input-4">Correo:</label>
-             <input type="email" name="txtCorreoEmp" class="form-control" id="input-4" placeholder="">
-            </div>
-
-            <div class="form-group">
-             <label for="input-5">Telefono:</label>
-             <input type="tel" name="txtTelefonoEmp" class="form-control" id="input-5" placeholder="">
-            </div>
-   
-            <div class="form-group">
-             <label for="input-6">Documento:</label>
-             <input type="number" name="txtDocumentoEmp" class="form-control" id="input-6" placeholder="">
-            </div>
-   
-            <div class="form-group">
-             <label for="input-7">Usuario:</label>
-             <input type="text" name="txtUsuarioEmp" class="form-control" id="input-7" placeholder="">
             </div>
   
             <div class="form-group">
@@ -49,15 +35,9 @@
             </div>
           </fieldset>
          </form>
-           @if(session('exito') )
-               <p class="alert-success"> {{ session("exito")}}</p>
-               <P class="alert-sucess">Empleado Creado <strong>{{session("Nombre_Empleado")}} </strong> </p>
-                @else 
-             @foreach($errors->all() as $error)
-               <p class="alert-danger"> {{$error}} </p>
-             @endforeach
-           @endif
+           
        </div>
     </div>
 </div>
+<button type="submit"  class="btn btn-light px-5"><a href="{{ url('../empleados') }}">Volver</a></button>
 @endsection

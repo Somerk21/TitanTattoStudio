@@ -6,7 +6,7 @@
     <div class="card">
       <div class="card-body">
         <div class="card-title">Nueva Imagen</div><hr>
-         <form class="form-horizontal" method="POST" action="{{ url('catalogos/store') }}">
+         <form class="form-horizontal" action="{{route('catalogos.store')}}" method="POST" enctype="multipart/form-data">
           @csrf 
            <fieldset>
 
@@ -27,7 +27,7 @@
 
             <div class="form-group">
              <label for="input-3">URL:</label>
-             <input type="text" name="txtUrlCat" class="form-control" id="input-3" placeholder="">
+             <input type="file" name="file" class="form-control" id="input-3" placeholder="" accept="image/*">
             </div>
 
             <div class="form-group">
@@ -45,4 +45,5 @@
        </div>
     </div>
 </div>
+<button type="submit"  class="btn btn-light px-5"><a href="{{ url('../catalogos') }}">Volver</a></button>
 @endsection

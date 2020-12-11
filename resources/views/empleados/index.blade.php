@@ -1,45 +1,62 @@
-@extends('layouts.adminis')
+@extends('layout_empleado.adminisE')
 @section('titulo') Consulta Empleados @endsection
 @section('admins')
 <div class="row">
     <div class="col-lg-12">
        <div class="card">
          <div class="card-body">
-           <h5 class="card-title">Lista de empleados</h5>
+           <h5 class="card-title">Lista de empleados</h5> 
+
+           @if(session('exito') )
+               <p class="alert-success"> {{ session("exito")}}</p>
+                @else 
+             @foreach($errors->all() as $error)
+               <p class="alert-danger"> {{$error}} </p>
+             @endforeach
+           @endif
+
 			       <div class="table-responsive">
                <table class="table table-striped">
                   <thead>
                     <tr>
                       <th>Codigo</th>
-                      <th>Nombre y Apellido</th>
-                      <th>Direccion</th>
+                      <th>Nombre</th>
                       <th>Correo Electronico</th>
                       <th>Telefono</th>
-                      <th>Documento</th>
-                      <th>Usuario</th>
-                      <th>Estado</th>
-                      <th>Opciones</th>
+                      <th>Edad</th>
+                     <!-- <th>Contraseña</th>
+                      <th>Rol</th>-->
+                      <th>Cambios</th>
                     </tr>
                   </thead>
                   <tbody>
                      @foreach($empleados as $empleado)
                        <tr>
-                         <th><strong class="text-danger">{{ $empleado->Id_Empleado}}</strong></th>
-                         <th><strong class="text-danger">{{ $empleado->Nombre_Empleado}}</strong>
-                         <a></a>{{ $empleado->Apellido_Empleado}}</th>
-                         <th>{{ $empleado->Direccion_Empleado}}</th>
-                         <th>{{ $empleado->Correo_Empleado}}</th>
-                         <th>{{ $empleado->Telefono_Empleado}}</th>
-                         <th>{{ $empleado->Documento_Empleado}}</th>  
-                         <th>{{ $empleado->ID_Usuario_FK}}</th>
-                         <th> <input type="button" class="btn btn-primary" value="Activo"></th>
-                         <th><a href="usuarios/edit">editar</a>/ <a href="#">Eliminar </a></th>
+                         <th>{{ $empleado->id }}</th>
+                         <th>{{ $empleado->name}}</th>
+                         <th>{{ $empleado->email }}</th>
+                         <th>{{ $empleado->telefono }}</th>
+                         <th>{{ $empleado->edad }}</th>
+                        <!-- <th>{{ $empleado->password}}</th>
+                         <th>{{ $empleado->Rol}}</th> -->
+                         <th> <a class="zmdi zmdi-brush" href="{{ url('empleados/'.$empleado->id.'/edit') }}"></a> 
+                         <td>
+                                   
+                                   @if ($empleado->estado == 1)
+                                  Activo
+                                   @elseif ($empleado->estado == 2)
+                                   Inactivo
+                                   @endif                                      
+                               
+                           </td>
+                           </th>
                        </tr>
                          @endforeach
                        </tbody>
                      </table>
                      {{$empleados->links()}}</br>
-                     <button type="submit" href="usuarios/create" class="btn btn-light px-5">Crear uno Nuevo</button>
+                     <button type="submit" class="btn btn-light px-5"><a href="empleados/create">Nuevo
+                            Empleado</a></button>
                </div>
            </div>
      </div>

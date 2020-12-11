@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" >
 <head>
   <meta charset="utf-8"/>
   <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
@@ -9,7 +9,7 @@
   <title>@yield('titulo')</title>
   <link href="{{ asset('admin/css/pace.min.css')}}" rel="stylesheet"/>
    <script src="{{ asset('admin/assets/js/pace.min.js')}}"></script>
-   <link rel="icon" href="{{ asset('admin/assets/images/favicon.ico')}}" type="image/x-icon">
+   <link rel="icon" href="{{ asset('admin/assets/images/maquina-de-tatuaje.ico')}}" type="image/x-icon">
    <link href="{{ asset('admin/assets/plugins/vectormap/jquery-jvectormap-2.0.2.css')}}" rel="stylesheet"/>
    <link href="{{ asset('admin/assets/plugins/simplebar/css/simplebar.css')}}" rel="stylesheet"/>
    <link href="{{ asset('admin/assets/css/bootstrap.min.css')}}" rel="stylesheet"/>
@@ -19,45 +19,35 @@
    <link href="{{ asset('admin/assets/css/app-style.css')}}" rel="stylesheet"/>
 </head>
 <body class="bg-theme bg-theme1">
+  
  <div id="wrapper">
    <div id="sidebar-wrapper" data-simplebar="" data-simplebar-auto-hide="true">
      <div class="brand-logo">
       <a href="#">
-       <img src="{{ asset('admin/assets/images/logo-icon.png')}}" class="logo-icon" alt="logo icon">
-       <h5 class="logo-text">Tattoo</h5>
+       <img src="{{ asset('admin/assets/images/maquina-de-tatuaje.ico')}}" class="logo-icon" alt="logo icon">
+       <h5 class="logo-text">Titan Tattoo Studio</h5>
      </a>
    </div>
    <ul class="sidebar-menu do-nicescrol">
       <li class="sidebar-header">Menu</li>
       <li>
-      <li>
-        <a href="detalle_citas/calendar">
-          <i class="zmdi zmdi-calendar-check"></i> <span>Calendar</span>
-        </a>
-      </li>
-      <li>
-        <a href="empleados/profile.html">
-          <i class="zmdi zmdi-face"></i> <span>Perfil</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{ url('../usuarios') }}">
-          <i class="zmdi zmdi-account-circle"></i><span>Usuarios</span>
-        </a>
-      </li>
-      <li>
-        <a href="{{ url('../catalogos') }}">
-          <i class="zmdi zmdi-book-image"></i><span>Catalogos</span>
+        <a href="{{ url('../perfiles') }}">
+          <i class="zmdi zmdi-account-box"></i><span>Perfil</span>
         </a>
       </li>
       <li>
         <a href="{{ url('../empleados') }}">
-          <i class="zmdi zmdi-account-add"></i><span>Empleados</span>
+          <i class="zmdi zmdi-account-box"></i><span>Empleados</span>
         </a>
       </li>
       <li>
         <a href="{{ url('../clientes') }}">
-          <i class="zmdi zmdi-account-box"></i><span>Clientes</span>
+          <i class="zmdi zmdi-account-add"></i><span>Clientes</span>
+        </a>
+      </li>
+      <li>
+        <a href="{{ url('../cataladmin') }}">
+          <i class="zmdi zmdi-book-image"></i><span>Catalogos</span>
         </a>
       </li>
       <li>
@@ -66,7 +56,7 @@
         </a>
       </li>
       <li>
-        <a href="{{ url('../citas') }}">
+        <a href="{{ url('../clcitas/vistaConsultar') }}">
           <i class="zmdi zmdi-assignment"></i><span>citas</span>
         </a>
       </li>
@@ -80,6 +70,26 @@
        <i class="icon-menu menu-icon"></i>
      </a>
     </li>
+    <li class="nav-item">
+      <form class="search-bar">
+        <input type="text" class="form-control" id="texto" placeholder="Enter keywords">
+         <a href="javascript:void();"><i class="icon-magnifier"></i></a>
+         <div id="resultados" class="border"></div>
+         <!--<script>
+         window.addEventListener('load',function(){
+        document.getElementById("texto").addEventListener("keyup"), () => {
+            if((document.getElementById("texto").value.length)>=1)
+                fetch(/barra/buscador?texto=$document.getElementById("texto").value=({ method:'get' })
+                .then(response  =>  response.text() )
+                .then(html      =>  {   document.getElementById("resultados").innerHTML = html  })
+        }else{}
+                document.getElementById("resultados").innerHTML = "";
+        
+    };    
+         </script>-->
+      </form>
+    </li>
+    
   </ul>
   <ul class="navbar-nav align-items-center right-nav-link">
     <li class="nav-item">
@@ -98,7 +108,7 @@
            </div>
           </a>
         </li>
-        <li class="dropdown-item"><i class="icon-power mr-2"></i><a href="/">Logout</a> </li>
+        <li class="dropdown-item"><i class="icon-power mr-2"></i><a href="/">Cerrar Sesion</a> </li>
       </ul>
     </li>
   </ul>
@@ -119,7 +129,7 @@
       <i class="zmdi zmdi-settings zmdi-hc-spin"></i>
     </div>
     <div class="right-sidebar-content">
-      <p class="mb-0">Gaussion Texture</p>
+      <p class="mb-0">Eligue un fondo</p>
       <hr>
       <ul class="switcher">
         <li id="theme1"></li>
@@ -130,6 +140,8 @@
         <li id="theme6"></li>
         <li id="theme7"></li>
         <li id="theme8"></li>
+        <li id="theme9"></li>
+        <li id="theme10"></li>
       </ul>  
      </div>
    </div>

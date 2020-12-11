@@ -438,61 +438,30 @@ hr {
   transition: background .3s;
 }
 #theme7 {
-  background-image: linear-gradient(45deg, #0c675e, #069e90);
+  background-image: url(../images/bg-themes/7.png);
   background-size: 100% 100%;
   background-position: center;
   transition: background .3s;
 }
 #theme8 {
-  background-image: linear-gradient(567deg, rgba(165, 42, 4, 0.89), rgba(113, 102, 8, 0.89), rgba(13, 95, 16, 0.93), rgba(4, 79, 88, 0.94), rgba(19, 56, 86, 0.9), rgba(24, 32, 78, 0.94), rgba(100, 8, 115, 0.95));
+  background-image: url(../images/bg-themes/8.png);
   background-size: 100% 100%;
   background-position: center;
   transition: background .3s;
 }
 #theme9 {
-  background-image: linear-gradient(45deg, #29323c, #485563);
+  background-image: url(../images/bg-themes/9.png);
   background-size: 100% 100%;
   background-position: center;
   transition: background .3s;
 }
 #theme10 {
-  background-image: linear-gradient(45deg, #795548, #945c48);
-  background-size: 100% 100%;
-  background-position: center;
-  transition: background .3s;
-}
-#theme11 {
-  background-image: linear-gradient(45deg, #1565C0, #1E88E5);
-  background-size: 100% 100%;
-  background-position: center;
-  transition: background .3s;
-}
-#theme12 {
-  background-image: linear-gradient(45deg, #65379b, #886aea);
+  background-image: url(../images/bg-themes/10.png);
   background-size: 100% 100%;
   background-position: center;
   transition: background .3s;
 }
 
-#theme13 {
-  background-image: linear-gradient(180deg, #ff5447, #f1076f);
-  background-size: 100% 100%;
-  background-position: center;
-  transition: background .3s;
-}
-
-#theme14 {
-  background-image: linear-gradient(180deg, #08a50e, #69bb03);
-  background-size: 100% 100%;
-  background-position: center;
-  transition: background .3s;
-}
-#theme15 {
-  background-image: linear-gradient(45deg, #6a11cb, #2575fc);
-  background-size: 100% 100%;
-  background-position: center;
-  transition: background .3s;
-}
 
 body.bg-theme1 {
   background-image: url(../images/bg-themes/1.png);
@@ -513,32 +482,18 @@ body.bg-theme6 {
   background-image: url(../images/bg-themes/6.png);
 }
 body.bg-theme7 {
-  background-image: linear-gradient(45deg, #0c675e, #069e90);
+  background-image: url(../images/bg-themes/7.png);
 } 
 body.bg-theme8 {
-  background-image: linear-gradient(567deg, rgba(165, 42, 4, 0.89), rgba(113, 102, 8, 0.89), rgba(13, 95, 16, 0.93), rgba(4, 79, 88, 0.94), rgba(19, 56, 86, 0.9), rgba(24, 32, 78, 0.94), rgba(100, 8, 115, 0.95));
+  background-image: url(../images/bg-themes/8.png);
 } 
 body.bg-theme9 {
-  background-image: linear-gradient(45deg, #29323c, #485563);
+  background-image: url(../images/bg-themes/9.png);
 } 
 body.bg-theme10 {
-  background-image: linear-gradient(45deg, #795548, #945c48);
+  background-image: url(../images/bg-themes/10.png);
 } 
-body.bg-theme11 {
-  background-image: linear-gradient(45deg, #1565C0, #1E88E5);
-} 
-body.bg-theme12 {
-  background-image: linear-gradient(45deg, #65379b, #886aea);
-}   
-body.bg-theme13 {
-  background-image: linear-gradient(180deg, #ff5447, #f1076f);
-}
-body.bg-theme14 {
-  background-image: linear-gradient(180deg, #08a50e, #69bb03);
-}
-body.bg-theme15 {
-  background-image: linear-gradient(45deg, #6a11cb, #2575fc);
-}   
+
   
 /* Topbar Header */   
 .topbar-nav .navbar{
@@ -875,8 +830,12 @@ body.bg-theme15 {
     text-transform: uppercase;
     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
+div.c {
+    text-align: right;
+  }
 .btn-link{
-	color: #14abef;
+    color: #14abef;
+    
 }
 .btn:focus{
 	box-shadow:none;
@@ -901,6 +860,22 @@ body.bg-theme15 {
 	background-color: #7934f3;
 	border-color: #7934f3
 }
+
+.button1 {
+    background-color: #4CAF50; /* Green */
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+  }
+  
+.button2 {
+    background-color: #f44336;; /* Red */
+    color: white;
+    padding: 5px 10px;
+    text-align: center;
+    display: inline-block;
+  }
 
 .btn-primary:hover {
 	color: #fff;

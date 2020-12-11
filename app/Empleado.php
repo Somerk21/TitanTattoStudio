@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class Empleado extends Model
 {
     protected $table = "empleado";
-    protected $primaryKey = "ID_EMPLEADO";
+    protected $primaryKey = "Id_Empleado";
     public $timestamps = false;
     
     public function usuarios(){

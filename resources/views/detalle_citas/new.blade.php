@@ -1,5 +1,5 @@
-@extends('layouts.adminis')
-@section('titulo') Consulta Empleados @endsection
+@extends('layout_empleado.adminisE')
+@section('titulo') Detalle de citas @endsection
 @section('admins')
 <div class="row mt-3">
   <div class="col-lg-12">
@@ -24,25 +24,20 @@
              <input type="number" name="txtAbonos" class="form-control" id="input-7" placeholder="">
             </div>
 
-            <div class="form-group">
-             <label for="input-3">Cliente:</label>
-             <input type="text" name="txtClienteFk" class="form-control" id="input-3" placeholder="">
-            </div>
 
             <div class="form-group">
-             <label for="input-4">Empleado:</label>
-             <input type="text" name="txtEmpleadoFk" class="form-control" id="input-4" placeholder="">
-            </div>
+            <label for="input-7">Empleado:</label>
+                    		<select name="sluser" class="form-control">
+											@foreach($user as $users)
+											<option class="form-control" value="{{ $users->id  }}">{{ $users->name }}</option>
+											@endforeach
+										</select>
+									</div>
 
             <div class="form-group">
-             <label for="input-6">Imagen de Referencia:</label>
-             <input type="text" name="txtCatalogoFk" class="form-control" id="input-6" placeholder="">
-            </div>
-
-            <div class="form-group">
-             <label for="input-5">Cita:</label>
-             <input type="text" name="txtCitaFk" class="form-control" id="input-5" placeholder="">
-            </div>
+										<p>Cita: </p>
+                    <input type="number" name="txtCitas" class="form-control" id="input-7" placeholder="">
+									</div>
 
             <div class="form-group">
              <label for="input-8">Detalle del Trabajo:</label>
@@ -51,9 +46,10 @@
   
             <div class="form-group">
              <button type="submit" class="btn btn-light px-5"><i class="icon-lock"></i>Registrar</button>
-            </div>
+            </div>           
           </fieldset>
          </form>
+         
          @if(session('exito') )
           <p class="alert-success"> {{ session("exito")}}</p>
          @else 
@@ -64,4 +60,5 @@
        </div>
     </div>
 </div>
+<button type="submit"  class="btn btn-light px-5"><a href="{{ url('../detalle_citas') }}">Volver</a></button>
 @endsection
